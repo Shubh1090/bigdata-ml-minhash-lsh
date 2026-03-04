@@ -3,7 +3,6 @@
 def read_file(filename):
     with open(f"minhash/{filename}", "r") as f:
         return f.read().strip()
-
 d1 = read_file("D1.txt")
 d2 = read_file("D2.txt")
 d3 = read_file("D3.txt")
@@ -23,15 +22,8 @@ d4_3 = char_kgrams(d4, 3)
 
 def jaccard(a, b):
     return len(a & b) / len(a | b)
-
-docs = {
-    "D1": d1_3,
-    "D2": d2_3,
-    "D3": d3_3,
-    "D4": d4_3
-}
+docs = {"D1": d1_3, "D2": d2_3, "D3": d3_3, "D4": d4_3}
 from itertools import combinations
-
 print("Exact Jaccard Similarities (3-grams)")
 print("--------------------------------------")
 exact_sims = {}
@@ -54,7 +46,6 @@ print("---------------------------------------")
 for pair, sim in exact_sims.items():
     prob = lsh_probability(sim, r, b)
     print(f"{pair[0]}-{pair[1]}: {prob:.4f}")
-
 r = 8
 b = 20
 print("\nLSH Candidate Probability (r=8, b=20)")
@@ -62,3 +53,4 @@ print("---------------------------------------")
 for pair, sim in exact_sims.items():
     prob = lsh_probability(sim, r, b)
     print(f"{pair[0]}-{pair[1]}: {prob:.4f}")
+    
