@@ -15,7 +15,6 @@ with open("data/u.data", "r") as f:
 
 print("Total users:", len(user_movies))
 
-# -----------------------------------------
 # Exact Jaccard similarity for user 789
 target_user = 789
 
@@ -43,7 +42,6 @@ print("Most similar to user 789:", most_similar_user)
 print("Exact similarity:", round(max_similarity, 4))
 
 # Preparing for MinHash
-# -----------------------------------------
 # Creating universe of all movie IDs
 all_movies = set()
 for movies in user_movies.values():
@@ -89,8 +87,8 @@ def signature_similarity(sig1, sig2):
 
 t = 200
 m = 10007  # large prime > number of movies
-
 hash_functions = generate_hash_functions(t, m)
+
 # Compute MinHash signatures for all users
 user_signatures = {}
 
@@ -104,15 +102,11 @@ print("--------------------------------")
 target_user = 789
 max_sim = 0
 approx_most_similar = None
-
 target_sig = user_signatures[target_user]
-
 for user, sig in user_signatures.items():
     if user == target_user:
         continue
-    
-    sim = signature_similarity(target_sig, sig)
-    
+    sim = signature_similarity(target_sig, sig)    
     if sim > max_sim:
         max_sim = sim
         approx_most_similar = user
